@@ -1,4 +1,5 @@
 import React from 'react'
+import { PasswordInput } from './Styles/Password.styles'
 
 const Password = (props) => {
   const {
@@ -12,7 +13,7 @@ const Password = (props) => {
 
   return (
     <>
-      <input
+      <PasswordInput
         type='password'
         id='password'
         ref={passwordRef}

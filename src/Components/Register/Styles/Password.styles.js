@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const UserInput = styled.input`
+export const PasswordInput = styled.input`
   max-width: 100%;
   border: none;
   border-bottom: 1px solid #ccc;

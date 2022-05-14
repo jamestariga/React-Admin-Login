@@ -1,7 +1,15 @@
 import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { USER_REGEX, PWD_REGEX } from '../../Utils/Regex'
+import {
+  Backdrop,
+  Container,
+  FormContainer,
+  FormGroup,
+  SideContainer,
+} from './Styles/Register.styles'
 import User from './User'
+import Password from './Password'
 
 const Register = () => {
   const [user, setUser] = useState('')
@@ -37,14 +45,39 @@ const Register = () => {
 
   return (
     <>
-      <User
-        user={user}
-        setUser={setUser}
-        userFocus={userFocus}
-        setUserFocus={setUserFocus}
-        validUser={validUser}
-        userRef={userRef}
-      />
+      <Backdrop>
+        <Container>
+          <SideContainer />
+          <FormContainer>
+            <h1>Register</h1>
+            <form>
+              <FormGroup>
+                <label htmlFor='username'>Username:</label>
+                <User
+                  user={user}
+                  setUser={setUser}
+                  userFocus={userFocus}
+                  setUserFocus={setUserFocus}
+                  validUser={validUser}
+                  userRef={userRef}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor='password'>Password:</label>
+                <Password
+                  password={password}
+                  setPassword={setPassword}
+                  passwordFocus={passwordFocus}
+                  setPasswordFocus={setPasswordFocus}
+                  validPassword={validPassword}
+                  passwordRef={passwordRef}
+                />
+              </FormGroup>
+              <button>Sign up</button>
+            </form>
+          </FormContainer>
+        </Container>
+      </Backdrop>
     </>
   )
 }
