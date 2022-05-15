@@ -1,5 +1,10 @@
 import React from 'react'
-import { UserInput } from './Styles/User.styles'
+import {
+  UserInput,
+  InstructionContainer,
+  Instructions,
+  InfoIcon,
+} from './Styles/User.styles'
 
 const User = (props) => {
   const { user, setUser, userFocus, setUserFocus, validUser, userRef } = props
@@ -19,6 +24,17 @@ const User = (props) => {
         aria-invalid={validUser ? 'false' : 'true'}
         aria-describedby='uidnote'
       />
+      <InstructionContainer
+        userFocus={userFocus}
+        user={user}
+        validUser={validUser}
+      >
+        <InfoIcon />
+        <Instructions id='uidnote'>
+          Username must be at least 4 characters long and contain only letters,
+          a hypen, and an underscore.
+        </Instructions>
+      </InstructionContainer>
     </>
   )
 }

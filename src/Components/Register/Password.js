@@ -1,9 +1,14 @@
 import React from 'react'
-import { PasswordInput } from './Styles/Password.styles'
+import {
+  PasswordInput,
+  PasswordContainer,
+  PasswordInfo,
+  InfoIcon,
+} from './Styles/Password.styles'
 
 const Password = (props) => {
   const {
-    Password,
+    password,
     setPassword,
     passwordFocus,
     setPasswordFocus,
@@ -17,8 +22,7 @@ const Password = (props) => {
         type='password'
         id='password'
         ref={passwordRef}
-        value={Password}
-        autoComplete='off'
+        value={password}
         required
         onChange={(e) => setPassword(e.target.value)}
         onFocus={() => setPasswordFocus(true)}
@@ -26,6 +30,17 @@ const Password = (props) => {
         aria-invalid={validPassword ? 'false' : 'true'}
         aria-describedby='pwdnote'
       />
+      <PasswordContainer
+        password={password}
+        passwordFocus={passwordFocus}
+        validPassword={validPassword}
+      >
+        <InfoIcon />
+        <PasswordInfo id='pwdnote'>
+          Password must be at least 8 characters long, contains a capital
+          letter, digits and a special characters.
+        </PasswordInfo>
+      </PasswordContainer>
     </>
   )
 }

@@ -10,12 +10,12 @@ export const Backdrop = styled.div`
 `
 
 export const Container = styled.div`
-  /* height: 80vh; */
+  height: 80vh;
   width: 80%;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 875px) {
     flex-direction: column;
   }
 `
@@ -29,10 +29,9 @@ export const SideContainer = styled.div`
 export const FormContainer = styled.div`
   display: flex;
   flex: 40%;
-  gap: 5rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: #f7f7f7;
   color: #333;
   padding: 2rem;
@@ -74,7 +73,8 @@ export const FormGroup = styled.div`
   width: 100%;
 
   input {
-    margin-bottom: 2rem;
+    margin-bottom: ${(props) =>
+      props.userFocus && props.user && !props.validUser ? '2rem' : '0'};
   }
 
   label {

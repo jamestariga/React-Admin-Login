@@ -10,6 +10,7 @@ import {
 } from './Styles/Register.styles'
 import User from './User'
 import Password from './Password'
+import MatchPassword from './MatchPassword'
 
 const Register = () => {
   const [user, setUser] = useState('')
@@ -35,12 +36,20 @@ const Register = () => {
   }, [])
 
   useEffect(() => {
-    setValidUser(USER_REGEX.test(user))
+    const result = USER_REGEX.test(user)
+    console.log(result)
+    console.log(user)
+    setValidUser(result)
   }, [user])
 
   useEffect(() => {
-    setValidPassword(PWD_REGEX.test(password))
-    setValidMatchPassword(password === matchPassword)
+    const result = PWD_REGEX.test(password)
+    console.log(result)
+    console.log(password)
+    setValidPassword(result)
+    const match = password === matchPassword
+    console.log(match)
+    setValidMatchPassword(match)
   }, [password, matchPassword])
 
   return (
@@ -71,6 +80,16 @@ const Register = () => {
                   setPasswordFocus={setPasswordFocus}
                   validPassword={validPassword}
                   passwordRef={passwordRef}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor='matchpassword'>Confirm Password:</label>
+                <MatchPassword
+                  matchPassword={matchPassword}
+                  setMatchPassword={setMatchPassword}
+                  matchPasswordFocus={matchPasswordFocus}
+                  setMatchPasswordFocus={setMatchPasswordFocus}
+                  validMatchPassword={validMatchPassword}
                 />
               </FormGroup>
               <button>Sign up</button>
