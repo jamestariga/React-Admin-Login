@@ -35,8 +35,7 @@ const MatchPassword = (props) => {
       >
         <InfoIcon />
         <MatchPasswordInfo id='matchpwdnote'>
-          Password must be at least 8 characters long, contains a capital
-          letter, digits and a special characters.
+          Password must match the entered password above.
         </MatchPasswordInfo>
       </MatchPasswordContainer>
     </>

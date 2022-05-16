@@ -28,7 +28,7 @@ const Password = (props) => {
         onFocus={() => setPasswordFocus(true)}
         onBlur={() => setPasswordFocus(false)}
         aria-invalid={validPassword ? 'false' : 'true'}
-        aria-describedby='pwdnote'
+        aria-describedby='matchpwdnote'
       />
       <PasswordContainer
         password={password}
@@ -36,9 +36,14 @@ const Password = (props) => {
         validPassword={validPassword}
       >
         <InfoIcon />
-        <PasswordInfo id='pwdnote'>
-          Password must be at least 8 characters long, contains a capital
-          letter, digits and a special characters.
+        <PasswordInfo id='matchpwdnote'>
+          8 to 24 characters. Must include uppercase and lowercase letters, a
+          number and a special character. Allowed special characters:{' '}
+          <span aria-label='exclamation mark'>!</span>{' '}
+          <span aria-label='at symbol'>@</span>{' '}
+          <span aria-label='hashtag'>#</span>{' '}
+          <span aria-label='dollar sign'>$</span>{' '}
+          <span aria-label='percent'>%</span>
         </PasswordInfo>
       </PasswordContainer>
     </>

@@ -80,5 +80,7 @@ export const FormGroup = styled.div`
   label {
     font-size: 1.5rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
   }
 `

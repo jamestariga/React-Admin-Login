@@ -15,9 +15,9 @@ export const PasswordInput = styled.input`
     border-bottom: 1px solid #000;
   }
 
-  &:invalid {
+  /* &:invalid {
     border-bottom: 1px solid #f00;
-  }
+  } */
 `
 
 export const PasswordContainer = styled.div`
