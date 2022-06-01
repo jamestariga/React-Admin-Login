@@ -84,3 +84,12 @@ export const FormGroup = styled.div`
     align-items: center;
   }
 `
+export const ErrorContainer = styled.p`
+  position: ${(props) => (props.error ? 'absolute' : 'relative')};
+  top: ${(props) => (props.error ? '-9999px' : '-2rem')};
+  background: ${(props) => (props.error ? 'lightpink' : 'transparent')};
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+`

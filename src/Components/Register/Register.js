@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useRef, useState } from 'react'
+import axios from '../../api/axios'
 import { USER_REGEX, PWD_REGEX } from '../../Utils/Regex'
 import {
   Backdrop,
@@ -7,11 +8,14 @@ import {
   FormContainer,
   FormGroup,
   SideContainer,
+  ErrorContainer,
 } from './Styles/Register.styles'
 import { CheckIcon, IncorrectIcon } from '../../Utils/Icons'
 import User from './User'
 import Password from './Password'
 import MatchPassword from './MatchPassword'
+
+const REGISTER_URL = '/register'
 
 const Register = () => {
   const [user, setUser] = useState('')
@@ -31,6 +35,7 @@ const Register = () => {
 
   const userRef = useRef()
   const passwordRef = useRef()
+  const errRef = useRef()
 
   useEffect(() => {
     userRef.current.focus()
@@ -61,16 +66,37 @@ const Register = () => {
 
     if (!secureUser || !securePassword) {
       setError('Invalid username or password')
-      setSuccess(false)
-      console.log(error)
       return
-    } else {
-      setError('')
+    }
+
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ user, password }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        }
+      )
+      console.log(response?.data)
+      console.log(response?.accessToken)
+      console.log(JSON.stringify(response))
       setSuccess(true)
-      console.log(`success: ${success}`)
-      console.log(`User: ${user}`)
-      console.log(`Password: ${password}`)
-      console.log(`Match Password: ${matchPassword}`)
+      setUser('')
+      setPassword('')
+      setMatchPassword('')
+    } catch (e) {
+      if (!e?.response) {
+        setError('Server error')
+      } else if (e.response?.status === 409) {
+        setError('Username already exists')
+      } else {
+        setError('Registration failed')
+      }
+
+      errRef.current.focus()
     }
   }
 
@@ -86,6 +112,7 @@ const Register = () => {
               <>
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
+                  <ErrorContainer ref={errRef}>{error}</ErrorContainer>
                   <FormGroup>
                     <label htmlFor='username'>
                       Username:{' '}
