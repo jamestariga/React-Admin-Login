@@ -43,6 +43,10 @@ export const MatchPasswordContainer = styled.div`
     props.validMatchPassword
       ? '-9999px'
       : '0'};
+  @media (max-width: 875px) {
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+  }
 `
 
 export const MatchPasswordInfo = styled.p`

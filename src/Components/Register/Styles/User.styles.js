@@ -37,6 +37,12 @@ export const InstructionContainer = styled.div`
     props.userFocus && props.user && !props.validUser ? '-10px' : '9999px'};
   left: ${(props) =>
     !props.userFocus && !props.user && props.validUser ? '-9999px' : '0'};
+  ${(props) => props.error && 'display: none'};
+
+  @media (max-width: 875px) {
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+  }
 `
 
 export const Instructions = styled.p`

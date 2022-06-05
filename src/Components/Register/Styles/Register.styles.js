@@ -13,6 +13,7 @@ export const Container = styled.div`
   height: 80vh;
   width: 80%;
   display: flex;
+  justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
 
   @media (max-width: 875px) {
@@ -24,6 +25,10 @@ export const SideContainer = styled.div`
   background-size: cover;
   flex: 60%;
   display: flex;
+
+  @media (max-width: 875px) {
+    display: none;
+  }
 `
 
 export const FormContainer = styled.div`
@@ -64,6 +69,18 @@ export const FormContainer = styled.div`
       background-color: #2dfcf1;
     }
   }
+
+  @media (max-width: 875px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    button {
+      font-size: 1rem;
+    }
+
+    height: 80vh;
+  }
 `
 
 export const FormGroup = styled.div`
@@ -83,8 +100,14 @@ export const FormGroup = styled.div`
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 875px) {
+    label {
+      font-size: 1rem;
+    }
+  }
 `
-export const ErrorContainer = styled.p`
+export const ErrorContainer = styled.div`
   position: ${(props) => (props.error ? 'absolute' : 'relative')};
   top: ${(props) => (props.error ? '-9999px' : '-2rem')};
   background: ${(props) => (props.error ? 'lightpink' : 'transparent')};
