@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserInput } from './Styles/loginUser.styles'
+import { UserInput } from './Styles/LoginUser.styles'
 
 const LoginUser = (props) => {
   const { user, setUser, userRef } = props
