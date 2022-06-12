@@ -87,6 +87,18 @@ export const FormContainer = styled.div`
     }
   }
 
+  a {
+    color: #337ee8;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      color: #2dfcf1;
+    }
+  }
+
   @media (max-width: 875px) {
     h1 {
       font-size: 1.5rem;

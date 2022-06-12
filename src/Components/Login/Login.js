@@ -49,6 +49,13 @@ const Login = () => {
                 Submit
               </button>
             </form>
+            <p>
+              Need an account?
+              {/* Change this to a router link */}
+              <span>
+                <a href=''> Sign up</a>
+              </span>
+            </p>
           </FormContainer>
         </LoginContainer>
       </Backdrop>
