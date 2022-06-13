@@ -75,15 +75,35 @@ export const FormContainer = styled.div`
 
   button {
     padding: 1rem;
+    margin: 2rem 0;
     font-size: 1.25em;
     font-weight: bold;
     border-radius: 2rem;
-    border: 1px solid #333;
-    transition: all 0.3s ease-in-out;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
 
-    &:hover {
-      cursor: pointer;
-      background-color: #2dfcf1;
+    &::after {
+      content: 'Submit';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: inherit;
+      transition: opacity 0.3s;
+      background: linear-gradient(#1cd8d2, #93edc7);
+    }
+
+    &:hover::after {
+      opacity: 1;
     }
   }
 
@@ -107,7 +127,33 @@ export const FormContainer = styled.div`
     button {
       font-size: 1rem;
     }
+  }
 
-    height: 80vh;
+  @media (max-height: 635px) {
+    label {
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    form {
+      gap: 0.5rem;
+      padding: 0;
+    }
+
+    input {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 0.75rem;
+    }
+
+    a {
+      font-size: 0.75rem;
+    }
   }
 `
