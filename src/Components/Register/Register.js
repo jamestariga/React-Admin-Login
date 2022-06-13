@@ -100,6 +100,15 @@ const Register = () => {
     }
   }
 
+  // For testing purposes
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setUser('')
+  //   setPassword('')
+  //   setMatchPassword('')
+  //   setSuccess(true)
+  // }
+
   return (
     <>
       <Backdrop>
@@ -176,6 +185,13 @@ const Register = () => {
                     Sign up
                   </button>
                 </form>
+                <p>
+                  Already have an account?
+                  {/* Change this to a router link */}
+                  <span>
+                    <a href='#'> Sign in</a>
+                  </span>
+                </p>
               </>
             )}
           </FormContainer>

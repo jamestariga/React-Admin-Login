@@ -61,12 +61,43 @@ export const FormContainer = styled.div`
     font-size: 1.25em;
     font-weight: bold;
     border-radius: 2rem;
-    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      content: 'Sign up';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: inherit;
+      transition: opacity 0.3s;
+      background: linear-gradient(#1cd8d2, #93edc7);
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  a {
+    color: #337ee8;
+    font-weight: bold;
+    text-decoration: none;
     transition: all 0.3s ease-in-out;
 
     &:hover {
       cursor: pointer;
-      background-color: #2dfcf1;
+      color: #2dfcf1;
     }
   }
 
@@ -78,8 +109,35 @@ export const FormContainer = styled.div`
     button {
       font-size: 1rem;
     }
+  }
 
-    height: 80vh;
+  @media (max-height: 768px) {
+    label {
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    form {
+      gap: 0.5rem;
+      padding: 0;
+    }
+
+    input {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 0.75rem;
+    }
+
+    a {
+      font-size: 0.75rem;
+    }
   }
 `
 
@@ -105,6 +163,14 @@ export const FormGroup = styled.div`
     label {
       font-size: 1rem;
     }
+  }
+
+  @media (max-height: 768px) {
+    label {
+      font-size: 1rem;
+    }
+
+    gap: 0;
   }
 `
 export const ErrorContainer = styled.div`
