@@ -11,6 +11,7 @@ import {
   FormGroup,
   FormContainer,
 } from './Styles/Login.styles'
+import { Link } from 'react-router-dom'
 
 const LOGIN_URL = '/auth'
 
@@ -116,7 +117,7 @@ const Login = () => {
                   Need an account?
                   {/* Change this to a router link */}
                   <span>
-                    <a href='#'> Sign up</a>
+                    <Link to='/'> Sign up</Link>
                   </span>
                 </p>
               </>

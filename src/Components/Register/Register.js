@@ -14,6 +14,7 @@ import { CheckIcon, IncorrectIcon } from '../../Utils/Icons'
 import User from './User'
 import Password from './Password'
 import MatchPassword from './MatchPassword'
+import { Link } from 'react-router-dom'
 
 const REGISTER_URL = '/register'
 
@@ -189,7 +190,7 @@ const Register = () => {
                   Already have an account?
                   {/* Change this to a router link */}
                   <span>
-                    <a href='#'> Sign in</a>
+                    <Link to='/login'> Sign in</Link>
                   </span>
                 </p>
               </>
