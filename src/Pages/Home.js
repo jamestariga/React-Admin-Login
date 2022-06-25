@@ -9,12 +9,17 @@ const Home = () => {
           <h1>Home</h1>
           <div>
             <p>
-              <Link to='/register'>Register</Link> for a new account
+              Go to the <Link to='/admin'>Admin</Link> Page
             </p>
           </div>
           <div>
             <p>
-              <Link to='/login'>Login</Link> to your account
+              Go to the <Link to='/editor'>Editor</Link> Page
+            </p>
+          </div>
+          <div>
+            <p>
+              Go to the <Link to='/lounge'>Lounge</Link> Page
             </p>
           </div>
         </Container>

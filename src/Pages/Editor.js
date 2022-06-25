@@ -7,7 +7,7 @@ const Editor = () => {
       <Wrapper>
         <Container>
           <h1>Editor Page</h1>
-          <p>Editors and Admins can chill here!</p>
+          <p>Editors can chill here!</p>
           <p>
             <Link to='/home'>Go Home</Link>
           </p>
