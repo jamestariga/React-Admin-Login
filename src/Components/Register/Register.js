@@ -1,5 +1,5 @@
-import React from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import axios from '../../api/axios'
 import { USER_REGEX, PWD_REGEX } from '../../Utils/Regex'
 import {
@@ -14,7 +14,6 @@ import { CheckIcon, IncorrectIcon } from '../../Utils/Icons'
 import User from './User'
 import Password from './Password'
 import MatchPassword from './MatchPassword'
-import { Link } from 'react-router-dom'
 
 const REGISTER_URL = '/register'
 
@@ -32,11 +31,14 @@ const Register = () => {
   const [matchPasswordFocus, setMatchPasswordFocus] = useState(false)
 
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const userRef = useRef()
   const passwordRef = useRef()
   const errRef = useRef()
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/login'
 
   useEffect(() => {
     userRef.current.focus()
@@ -84,10 +86,10 @@ const Register = () => {
       console.log(response?.data)
       console.log(response?.accessToken)
       console.log(JSON.stringify(response))
-      setSuccess(true)
       setUser('')
       setPassword('')
       setMatchPassword('')
+      navigate(from, { replace: true })
     } catch (e) {
       if (!e?.response) {
         setError('Server error')
@@ -101,100 +103,87 @@ const Register = () => {
     }
   }
 
-  // For testing purposes
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   setUser('')
-  //   setPassword('')
-  //   setMatchPassword('')
-  //   setSuccess(true)
-  // }
-
   return (
     <>
       <Backdrop>
         <Container>
           <SideContainer />
           <FormContainer>
-            {success ? (
-              <h1>Success!</h1>
-            ) : (
-              <>
-                <h1>Register</h1>
-                <form onSubmit={handleSubmit}>
-                  <ErrorContainer ref={errRef}>{error}</ErrorContainer>
-                  <FormGroup>
-                    <label htmlFor='username'>
-                      Username:{' '}
-                      {validUser ? (
-                        <CheckIcon validity='true' other={user} />
-                      ) : (
-                        <IncorrectIcon validity='true' other={user} />
-                      )}
-                    </label>
-                    <User
-                      user={user}
-                      setUser={setUser}
-                      userFocus={userFocus}
-                      setUserFocus={setUserFocus}
-                      validUser={validUser}
-                      userRef={userRef}
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <label htmlFor='password'>
-                      Password:{' '}
-                      {validPassword ? (
-                        <CheckIcon validity='true' other={password} />
-                      ) : (
-                        <IncorrectIcon validity='true' other={password} />
-                      )}
-                    </label>
-                    <Password
-                      password={password}
-                      setPassword={setPassword}
-                      passwordFocus={passwordFocus}
-                      setPasswordFocus={setPasswordFocus}
-                      validPassword={validPassword}
-                      passwordRef={passwordRef}
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <label htmlFor='matchpassword'>
-                      Confirm Password:{' '}
-                      {validMatchPassword ? (
-                        <CheckIcon validity='true' other={matchPassword} />
-                      ) : (
-                        <IncorrectIcon validity='true' other={matchPassword} />
-                      )}
-                    </label>
-                    <MatchPassword
-                      matchPassword={matchPassword}
-                      setMatchPassword={setMatchPassword}
-                      matchPasswordFocus={matchPasswordFocus}
-                      setMatchPasswordFocus={setMatchPasswordFocus}
-                      validMatchPassword={validMatchPassword}
-                    />
-                  </FormGroup>
-                  <button
-                    disabled={
-                      !validUser || !validPassword || !validMatchPassword
-                        ? true
-                        : false
-                    }
-                  >
-                    Sign up
-                  </button>
-                </form>
-                <p>
-                  Already have an account?
-                  {/* Change this to a router link */}
-                  <span>
-                    <Link to='/login'> Sign in</Link>
-                  </span>
-                </p>
-              </>
-            )}
+            <>
+              <h1>Register</h1>
+              <form onSubmit={handleSubmit}>
+                <ErrorContainer ref={errRef}>{error}</ErrorContainer>
+                <FormGroup>
+                  <label htmlFor='username'>
+                    Username:{' '}
+                    {validUser ? (
+                      <CheckIcon validity='true' other={user} />
+                    ) : (
+                      <IncorrectIcon validity='true' other={user} />
+                    )}
+                  </label>
+                  <User
+                    user={user}
+                    setUser={setUser}
+                    userFocus={userFocus}
+                    setUserFocus={setUserFocus}
+                    validUser={validUser}
+                    userRef={userRef}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='password'>
+                    Password:{' '}
+                    {validPassword ? (
+                      <CheckIcon validity='true' other={password} />
+                    ) : (
+                      <IncorrectIcon validity='true' other={password} />
+                    )}
+                  </label>
+                  <Password
+                    password={password}
+                    setPassword={setPassword}
+                    passwordFocus={passwordFocus}
+                    setPasswordFocus={setPasswordFocus}
+                    validPassword={validPassword}
+                    passwordRef={passwordRef}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <label htmlFor='matchpassword'>
+                    Confirm Password:{' '}
+                    {validMatchPassword ? (
+                      <CheckIcon validity='true' other={matchPassword} />
+                    ) : (
+                      <IncorrectIcon validity='true' other={matchPassword} />
+                    )}
+                  </label>
+                  <MatchPassword
+                    matchPassword={matchPassword}
+                    setMatchPassword={setMatchPassword}
+                    matchPasswordFocus={matchPasswordFocus}
+                    setMatchPasswordFocus={setMatchPasswordFocus}
+                    validMatchPassword={validMatchPassword}
+                  />
+                </FormGroup>
+                <button
+                  disabled={
+                    !validUser || !validPassword || !validMatchPassword
+                      ? true
+                      : false
+                  }
+                >
+                  Sign up
+                </button>
+              </form>
+              <p>
+                Already have an account?
+                {/* Change this to a router link */}
+                <span>
+                  <Link to='/login'> Sign in</Link>
+                </span>
+              </p>
+            </>
           </FormContainer>
         </Container>
       </Backdrop>
