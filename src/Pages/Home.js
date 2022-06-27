@@ -1,7 +1,18 @@
 import { Wrapper, Container } from './Styles/Pages.styles'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import AuthContext from '../context/AuthProvider'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const { setAuth } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    setAuth({})
+    navigate('/login')
+  }
+
   return (
     <>
       <Wrapper>
@@ -22,6 +33,7 @@ const Home = () => {
               Go to the <Link to='/lounge'>Lounge</Link> Page
             </p>
           </div>
+          <button onClick={handleLogout}>Sign out</button>
         </Container>
       </Wrapper>
     </>
