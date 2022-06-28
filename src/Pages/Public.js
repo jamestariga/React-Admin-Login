@@ -6,7 +6,7 @@ const Public = () => {
     <>
       <Wrapper>
         <Container>
-          <h1>Public</h1>
+          <h1>Public Pages</h1>
           <div>
             <p>
               <Link to='/register'>Register</Link> for a new account
@@ -15,6 +15,22 @@ const Public = () => {
           <div>
             <p>
               <Link to='/login'>Login</Link> to your account
+            </p>
+          </div>
+          <h1>Private Pages</h1>
+          <div>
+            <p>
+              Go to the <Link to='/admin'>Admin</Link> Page
+            </p>
+          </div>
+          <div>
+            <p>
+              Go to the <Link to='/editor'>Editor</Link> Page
+            </p>
+          </div>
+          <div>
+            <p>
+              Go to the <Link to='/lounge'>Lounge</Link> Page
             </p>
           </div>
         </Container>
