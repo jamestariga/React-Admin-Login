@@ -18,8 +18,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
-  width: 50%;
+  height: auto;
+  width: auto;
   background-color: firebrick;
   padding: 2rem;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
@@ -58,8 +58,24 @@ export const Container = styled.div`
     color: #333;
   }
 
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #54b3d6;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: background-color 0.5s ease-in-out;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
   @media (max-width: 768px) {
-    width: 60%;
+    width: auto;
 
     p {
       font-size: 1.1rem;
