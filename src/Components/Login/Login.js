@@ -100,7 +100,7 @@ const Login = () => {
               <p>
                 Need an account?
                 <span>
-                  <Link to='/'> Sign up</Link>
+                  <Link to='/register'> Sign up</Link>
                 </span>
               </p>
             </>
