@@ -1,29 +1,38 @@
 import { useState, useEffect, useRef } from 'react'
-import axios from '../../api/axios'
+import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 import { Wrapper } from './Styles/Users.styles'
-import useRefreshToken from '../../Hooks/useRefreshToken'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Users = () => {
   const [users, setUsers] = useState()
-  const refresh = useRefreshToken()
+  const axiosPrivate = useAxiosPrivate()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const firstRenderRef = useRef(true)
 
   useEffect(() => {
     let isMounted = true
     const controller = new AbortController()
 
-    const getUser = async () => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false
+      return
+    }
+
+    const getUsers = async () => {
       try {
-        const response = await axios.get('/users', {
+        const response = await axiosPrivate.get('/users', {
           signal: controller.signal,
         })
         console.log(response.data)
         isMounted && setUsers(response.data)
       } catch (err) {
         console.error(err)
+        navigate('/login', { state: { from: location }, replace: true })
       }
     }
 
-    getUser()
+    getUsers()
 
     return () => {
       isMounted = false
@@ -44,7 +53,6 @@ const Users = () => {
         ) : (
           <p>No users found</p>
         )}
-        <button onClick={() => refresh()}>Refresh</button>
       </Wrapper>
     </>
   )
