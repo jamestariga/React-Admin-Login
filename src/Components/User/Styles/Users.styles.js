@@ -19,5 +19,10 @@ export const Wrapper = styled.div`
 
   ul {
     list-style: none;
+    padding: 0;
+  }
+
+  li {
+    font-size: 1.5rem;
   }
 `
