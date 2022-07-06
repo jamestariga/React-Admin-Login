@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate'
 import { Wrapper } from './Styles/Users.styles'
 import { useNavigate, useLocation } from 'react-router-dom'
+import DeleteUser from './DeleteUser'
+import CreateUser from './CreateUser'
 
 const Users = () => {
-  const [users, setUsers] = useState()
+  const [users, setUsers] = useState([])
   const axiosPrivate = useAxiosPrivate()
   const navigate = useNavigate()
   const location = useLocation()
@@ -21,7 +23,7 @@ const Users = () => {
 
     const getUsers = async () => {
       try {
-        const response = await axiosPrivate.get('/users', {
+        const response = await axiosPrivate.get('/employees', {
           signal: controller.signal,
         })
         console.log(response.data)
@@ -43,16 +45,19 @@ const Users = () => {
   return (
     <>
       <Wrapper>
-        <h1>Users List</h1>
-        {users?.length ? (
-          <ul>
-            {users.map((user, i) => (
-              <li key={i}>{user?.username}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No users found</p>
-        )}
+        <h1>Employee List</h1>
+        <DeleteUser
+          users={users}
+          setUsers={setUsers}
+          axiosPrivate={axiosPrivate}
+          navigate={navigate}
+          location={location}
+        />
+        <CreateUser
+          axiosPrivate={axiosPrivate}
+          navigate={navigate}
+          location={location}
+        />
       </Wrapper>
     </>
   )
