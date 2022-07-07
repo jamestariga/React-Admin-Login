@@ -11,6 +11,7 @@ import {
   SideContainer,
   FormGroup,
   FormContainer,
+  PersistCheckbox,
 } from './Styles/Login.styles'
 
 const LOGIN_URL = '/auth'
@@ -24,7 +25,7 @@ const Login = () => {
   const userRef = useRef()
   const errRef = useRef()
 
-  const { setAuth } = useAuth()
+  const { setAuth, persist, setPersist } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/home'
@@ -36,6 +37,14 @@ const Login = () => {
   useEffect(() => {
     setErrMsg('')
   }, [user, password])
+
+  useEffect(() => {
+    localStorage.setItem('persist', persist)
+  }, [persist])
+
+  const togglePersist = () => {
+    setPersist((prev) => !prev)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -95,14 +104,23 @@ const Login = () => {
                     setPassword={setPassword}
                   />
                 </FormGroup>
-                <button>Submit</button>
+                <button>Sign In</button>
+                <PersistCheckbox>
+                  <input
+                    id='persist'
+                    type={'checkbox'}
+                    checked={persist}
+                    onChange={togglePersist}
+                  />
+                  <label htmlFor='persist'>Trust This Device</label>
+                </PersistCheckbox>
               </form>
-              <p>
+              <label>
                 Need an account?
                 <span>
                   <Link to='/register'> Sign up</Link>
                 </span>
-              </p>
+              </label>
             </>
           </FormContainer>
         </LoginContainer>
