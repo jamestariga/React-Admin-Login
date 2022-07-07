@@ -157,3 +157,32 @@ export const FormContainer = styled.div`
     }
   }
 `
+
+export const PersistCheckbox = styled.div`
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+
+  input[type='checkbox'] {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  label {
+    font-size: 1.25rem;
+    margin-left: 0.25rem;
+    font-weight: bold;
+  }
+
+  @media (max-width: 675px) {
+    input[type='checkbox'] {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    label {
+      font-size: 1rem;
+    }
+  }
+`
