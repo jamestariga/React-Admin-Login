@@ -1,16 +1,14 @@
 import { Wrapper, Container } from './Styles/Pages.styles'
-import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import AuthContext from '../context/AuthProvider'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import useLogout from '../Hooks/useLogout'
 
 const Home = () => {
-  const { setAuth } = useContext(AuthContext)
   const navigate = useNavigate()
+  const logout = useLogout()
 
-  const handleLogout = () => {
-    setAuth({})
-    navigate('/login')
+  const handleLogout = async () => {
+    await logout()
+    navigate('/')
   }
 
   return (
