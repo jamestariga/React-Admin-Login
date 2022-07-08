@@ -5,7 +5,7 @@ const CreateUser = (props) => {
 
   // Create a new user with the provided first and last name that will be stored in the database.
   const createUser = async (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     const { firstName, lastName } = e.target
     const user = { firstName: firstName.value, lastName: lastName.value }
     try {
@@ -20,10 +20,10 @@ const CreateUser = (props) => {
         }
       )
       console.log(response.data)
-      navigate('/home', { state: { from: location }, replace: true })
+      // navigate('/home', { state: { from: location }, replace: true })
     } catch (err) {
       console.error(err)
-      navigate('/login', { state: { from: location }, replace: true })
+      // navigate('/login', { state: { from: location }, replace: true })
     }
   }
 
