@@ -16,7 +16,8 @@ const DeleteUser = (props) => {
       response.status === 200 &&
         setUsers(users.filter((user) => user.id !== userId))
 
-      navigate('/home', { state: { from: location }, replace: true })
+      window.location.reload(true)
+      // navigate('/admin', { state: { from: location }, replace: true })
     } catch (err) {
       console.error(err)
     }
