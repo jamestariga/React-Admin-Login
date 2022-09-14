@@ -1,5 +1,13 @@
 # React Login Form
 
+## Login and Register Demo
+
+<img src="./docs/LoginAndRegister.gif">
+
+## Admin Dashboard Demo
+
+<img src="./docs/Admin.gif">
+
 ## Version 1.0.1 (June 2022)
 
 - Both register page and login page are working correctly
